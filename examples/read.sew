@@ -1,0 +1,22 @@
+(print "Enter the first number: ")
+(var a (read-num))
+(print "Enter the second number: ")
+(var b (read-num))
+
+(print "a = " a " | b = " b)
+(print)
+
+(print "Enter the first boolean: ")
+(var c (read-bool))
+(print "Enter the second boolean: ")
+(var d (read-bool))
+
+(print "c = " c " | d = " d)
+(print)
+
+(print "Enter the first string: ")
+(var e (read-str))
+(print "Enter the second string: ")
+(var f (read-str))
+
+(print "e = " e " | f = " f)

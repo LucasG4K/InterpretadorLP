@@ -53,11 +53,15 @@ object ExpInterpreter {
     case PrintExp(exps)                => evalPrintExp(exps)(env)
 
     case ReadNumExp                    => NumberV(readDouble())
+    case ReadBoolExp                   => BoolV(readBool())
+    case ReadStrExp                    => StringV(readStr())
     // #13 Implemente a avaliação das expressões (read-bool) e (read-str)
   }
 
-  private[interpreter] var print: (Any) => Unit = println // for testing purposes
-  private[interpreter] var readDouble: () => Double = io.StdIn.readDouble // for testing purposes
+  private[interpreter] var print:   (Any) => Unit    = println              // for testing purposes
+  private[interpreter] var readDouble: () => Double  = io.StdIn.readDouble  // for testing purposes
+  private[interpreter] var readBool:   () => Boolean = io.StdIn.readBoolean // for testing purposes
+  private[interpreter] var readStr:    () => String  = io.StdIn.readLine    // for testing purposes
 
   private def evalVarDecl(id: Exp, exp: Exp)(env: Environment): Value = id match {
     case IdExp(id) => env.declare(id, eval(exp)(env))

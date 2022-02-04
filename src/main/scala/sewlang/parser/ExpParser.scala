@@ -46,7 +46,9 @@ object ExpParser {
 
     case SList(SSym("print") :: exps) => PrintExp(exps.map(parse(_))) // (print exp*)
 
-    case SList(List(SSym("read-num"))) => ReadNumExp // (read-num)
+    case SList(List(SSym("read-num")))  => ReadNumExp  // (read-num)
+    case SList(List(SSym("read-bool"))) => ReadBoolExp // (read-bool)
+    case SList(List(SSym("read-str")))  => ReadStrExp  // (read-str)
     // #8 Implemente o parser para as expressões (read-bool) e (read-str)
 
     // As tarefas devem ser implementadas seguindo a ordem de numeração, logo, as três tarefas abaixo só devem ser implementadas após a #13.

@@ -48,4 +48,6 @@ case class BlockExp(exps: List[Exp]) extends Exp // (begin exp*)
 // IO Expressions
 case class PrintExp(exps: List[Exp]) extends Exp // (print exp*)
 case object ReadNumExp extends Exp // (read-num)
+case object ReadBoolExp extends Exp // (read-bool)
+case object ReadStrExp extends Exp // (read-str)
 // #4 Defina a AST para as expressões (read-bool) e (read-str)
