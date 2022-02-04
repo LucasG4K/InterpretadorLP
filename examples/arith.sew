@@ -1,0 +1,21 @@
+(print "Enter the first number: ")
+(var a (read-num))
+(print "Enter the second number: ")
+(var b (read-num))
+
+(print "a = " a " | b = " b)
+
+(var sum (+ a b))
+(print a " + " b " = " sum)
+
+(var sub (- a b))
+(print a " - " b " = " sub)
+
+(var mult (* a b))
+(print a " * " b " = " mult)
+
+(var div (/ a b))
+(print a " / " b " = " div)
+
+(var inv (- a))
+(print "-a = " inv)

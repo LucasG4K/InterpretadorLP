@@ -1,0 +1,22 @@
+(print "Enter the number of terms:")
+(var n (read-num))
+(if (< n 1)
+	(print "Invalid number!")
+	(begin
+		(print "Fibonacci Sequence:")
+        (begin
+            (print 0)
+            (var count 1)
+            (var a 0)
+            (var b 1)
+            (while (< count n)
+                (begin
+                    (print b)
+                    (set b (+ a b))
+                    (set a (+ b (* -1 a)))
+                    (set count (+ count 1))
+                )
+            )
+        )
+	)
+)
