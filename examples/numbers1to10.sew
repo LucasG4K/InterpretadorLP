@@ -1,3 +1,6 @@
 (for (var x 1) (< x 11) (++ x)
-	(print "Number: " x)
+	begin (
+		(print "Number: " x)
+		(++ x)
+	)
 )

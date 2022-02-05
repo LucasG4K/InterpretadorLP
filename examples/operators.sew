@@ -1,0 +1,13 @@
+(var x 5) 
+(print "Original: " x)
+(print "Incrementando: " (++ x))
+(-- x)
+(print "Decremento(2x): " (-- x))
+
+(print)
+
+(var y 10)
+(print x " += " y " => " (+= x y))
+(print x " -= " y " => " (-= x y))
+(print x " *= " y " => " (*= x y))
+(print x " /= " y " => " (/= x y))

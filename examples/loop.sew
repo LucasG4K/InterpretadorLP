@@ -1,0 +1,10 @@
+(print "Repeat:")
+(var w 1)
+(set w 30)
+(repeat
+    (begin
+        (print "w = " w)
+        (++ w)
+    )
+    (< w 11)
+)
