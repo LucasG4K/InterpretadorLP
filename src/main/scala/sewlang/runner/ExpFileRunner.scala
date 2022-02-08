@@ -4,6 +4,7 @@ import scala.util.Failure
 import scala.util.Success
 
 import sewlang.exception.ExpParserException
+import sewlang.exception.ExpIlegalStartOfSimplePatternException
 import sewlang.interpreter.ExpInterpreter
 import sewlang.parser.ExpParser
 import sewlang.util.FileReader
@@ -27,6 +28,7 @@ object ExpFileRunner {
     } catch {
       case e: SExprParserException => Console.err.println(s"s-expression parsing error: ${e.getMessage}")
       case e: ExpParserException   => Console.err.println(s"sewlang parsing error: ${e.getMessage}")
+      case e: ExpIlegalStartOfSimplePatternException => Console.err.println(s"sewlang illegal start of simple pattern error: ${e.getMessage}")
       case e: Exception            => Console.err.println(s"sewlang interpreting error: ${e.getMessage}")
     }
   }

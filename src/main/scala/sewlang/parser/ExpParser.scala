@@ -2,6 +2,7 @@ package sewlang.parser
 
 import sewlang.ast._
 import sewlang.exception.ExpParserException
+import sewlang.exception.ExpIlegalStartOfSimplePatternException
 import sexpr.ast._
 
 object ExpParser {
@@ -69,15 +70,35 @@ object ExpParser {
     case _ => throw ExpParserException(s"error in the expression '$sexp'")
   }
 
-  /*
+ /*
  * #9 Implemente a verificação de palavras reservadas de
  * modo que não seja possível utilizar uma palavra-chave
  * como 'while', por exemplo, como um identificador.
  */
 
   private def isIdentifier(str: String) = {
-    val regex = """^[a-zA-Z][a-zA-Z0-9_]*$""".r
-    regex.pattern.matcher(str).matches()
+    val regex = """^[-a-zA-Z][a-zA-Z0-9_]*$""".r
+    
+    str match {
+      case 
+        "nil"    |
+        "true"   |
+        "false"  |
+        "not"    |
+        "and"    |
+        "or"     |
+        "var"    |
+        "set"    |
+        "if"     |
+        "while"  |
+        "begin"  |
+        "print"  |
+        "for"    |
+        "repeat" => 
+          throw ExpIlegalStartOfSimplePatternException(s"error in variable declaration '$str'")
+      case _ => regex.pattern.matcher(str).matches()
+    }
+
   }
 
 }
