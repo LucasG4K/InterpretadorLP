@@ -47,6 +47,7 @@ object ExpInterpreter {
     case IfExp(cond, thenExp, elseExp) => evalIfExp(eval(cond)(env), thenExp, elseExp)(env)
 
     case WhileExp(cond, doExp)         => evalWhileExp(cond, doExp)(env)
+    case WhileInvExp(cond, doExp)      => evalWhileInvExp(cond, doExp)(env)
 
     case BlockExp(exps)                => evalBlockExp(exps)(env)
 
@@ -112,6 +113,16 @@ object ExpInterpreter {
       case _            => throw ExpInvalidValueTypeException(s"while expression requires a boolean expression in the condition")
     }
     loopWhile(cond, doExp, NilV)
+  }
+
+  private def evalWhileInvExp(cond: Exp, doExp: Exp)(env: Environment): Value = {
+    @annotation.tailrec
+    def loopWhileInv(cond: Exp, doExp: Exp, resultVal: Value): Value = eval(cond)(env) match {
+      case BoolV(true)  => resultVal
+      case BoolV(false) => loopWhileInv(cond, doExp, eval(doExp)(env))
+      case _            => throw ExpInvalidValueTypeException(s"repeat expression requires a boolean expression in the condition")
+    }
+    loopWhileInv(cond, doExp, NilV)
   }
 
   private def evalBlockExp(exps: List[Exp])(env: Environment): Value = {

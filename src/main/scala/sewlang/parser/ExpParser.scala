@@ -42,6 +42,7 @@ object ExpParser {
     case SList(List(SSym("if"), cond, thenExp, elseExp)) => IfExp(parse(cond), parse(thenExp), parse(elseExp)) // (if cond then-exp else-exp)
 
     case SList(List(SSym("while"), cond, doExp)) => WhileExp(parse(cond), parse(doExp)) // (while cond do-exp)
+    case SList(List(SSym("while-inv"), cond, doExp)) => WhileInvExp(parse(cond), parse(doExp)) // (while inversion cond do-exp)
 
     case SList(SSym("begin") :: exps) => BlockExp(exps.map(parse(_))) // (begin exp*)
 
@@ -81,20 +82,21 @@ object ExpParser {
     
     str match {
       case 
-        "nil"    |
-        "true"   |
-        "false"  |
-        "not"    |
-        "and"    |
-        "or"     |
-        "var"    |
-        "set"    |
-        "if"     |
-        "while"  |
-        "begin"  |
-        "print"  |
-        "for"    |
-        "repeat" => 
+        "nil"       |
+        "true"      |
+        "false"     |
+        "not"       |
+        "and"       |
+        "or"        |
+        "var"       |
+        "set"       |
+        "if"        |
+        "while"     |
+        "while-inv" |
+        "begin"     |
+        "print"     |
+        "for"       |
+        "repeat"    => 
           throw ExpIlegalStartOfSimplePatternException(s"error in variable declaration '$str'")
       case _ => regex.pattern.matcher(str).matches()
     }

@@ -41,6 +41,7 @@ case class IfExp(cond: Exp, thenExp: Exp, elseExp: Exp) extends Exp // (if cond 
 
 // Loop Expression
 case class WhileExp(cond: Exp, doExp: Exp) extends Exp // (while cond do-exp)
+case class WhileInvExp(cond: Exp, doExp: Exp) extends Exp // (while cond do-exp)
 
 // Block Expression
 case class BlockExp(exps: List[Exp]) extends Exp // (begin exp*)

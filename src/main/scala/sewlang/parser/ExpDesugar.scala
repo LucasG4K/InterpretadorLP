@@ -35,7 +35,7 @@ object ExpDesugar {
         SSym("begin"),
         body,
         SList(List(
-          SSym("while"), until_cond,
+          SSym("while-inv"), until_cond,
           SList(List(
             SSym("begin"),
             body))))))
