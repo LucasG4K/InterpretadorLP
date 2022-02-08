@@ -41,6 +41,17 @@ object ExpDesugar {
             body))))))
     // #16 Implemente o desugar para a expressão (repeat body until-cond) (FEITO)
 
+    // EXTRA
+    case SList(List(SSym("do-while"), body, until_cond)) => // (repeat body until_cond) --> (begin body)(until_cond))
+      SList(List(
+        SSym("begin"),
+        body,
+        SList(List(
+          SSym("while"), until_cond,
+          SList(List(
+            SSym("begin"),
+            body))))))
+
     case _ => sexp
   }
 

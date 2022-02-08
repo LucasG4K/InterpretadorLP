@@ -1,0 +1,9 @@
+(print "1 - Criação do 'do-while':")
+(var x 1)
+(do-while
+    (begin
+        (print "w = " x)
+        (++ x)
+    )
+    (< x 11)
+)
